@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>FEDAL.ico</file>
+        <file alias="FEDAL.png">FEDAL.png</file>
+    </qresource>
+</RCC>
