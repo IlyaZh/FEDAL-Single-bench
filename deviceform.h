@@ -19,9 +19,6 @@ class DeviceForm : public QWidget
 public:
     explicit DeviceForm(QWidget *parent = 0);
     ~DeviceForm();
-//    enum {START, STOP} startStop_t;
-//    enum {INTERNAL, EXTERNAL} intExtSync_t;
-//    enum {ON_DEVICE, OFF_DEVICE} power_t;
     enum {FREQUENCY_SHIFT = 0x0001,
                MIN_FREQUENCY_SHIFT = 0x0011,
                MAX_FREQUENCY_SHIFT = 0x0021,

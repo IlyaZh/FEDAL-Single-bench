@@ -51,18 +51,6 @@ void MainWindow::setupWindow() {
 
     loadComData();
 
-    serialPort = new SerialPortHandler(this);
-    if(serialPort) {
-        connect(serialPort, SIGNAL(stateChanged(bool)), this, SLOT(onStateChanged(bool)));
-    }
-
-    connect(serialPort, &SerialPortHandler::errorOccuredSignal, [this]() {
-        errorMessage(serialPort->errorString());
-    });
-    connect(serialPort, SIGNAL(timeoutSignal(quint8)), this, SLOT(onTimeout(quint8)));
-//    connect(serialPort, SIGNAL(stateChanged(bool)), this, SLOT(onStateChanged(bool)));
-    connect(serialPort, SIGNAL(newDataIsReady(bool)), this, SLOT(readReady(bool)));
-
     setupConnections();
 
     if(settings->getPortAutoconnect()) {
@@ -116,16 +104,17 @@ bool MainWindow::maybeSave() {
 
 // slots
 void MainWindow::settingsChanged() {
-    if(serialPort->isOpen()) {
-        serialPort->setOpenState(false);
-        serialPort->setPort(settings->getPortName());
-        serialPort->setBaud(settings->getBaudRate());
-        serialPort->setAddress(settings->getAddress());
-        serialPort->setOpenState(true);
+    if(serialPort != nullptr) {
+        if(serialPort->isOpen()) {
+            serialPort->setOpenState(false);
+            serialPort->setPort(settings->getPortName());
+            serialPort->setBaud(settings->getBaudRate());
+            serialPort->setAddress(settings->getAddress());
+            serialPort->setOpenState(true);
+        }
     }
     loadComData();
     qDebug() << "settings changed";
-    // Переподключение к порту, если соединение было открыто
 }
 
 void MainWindow::onStateChanged(bool flag) {
@@ -155,10 +144,9 @@ void MainWindow::buttonStateChanged(bool flag) {
 
 void MainWindow::readReady(bool queueIsEmpty) {
     quint16 startRegister = serialPort->getRegister();
-//    quint8 addr = serialPort->getAddress();
-    if(startRegister >= readRegisters[MIN_REGS_SHIFT] && startRegister < readRegisters[MIN_REGS_SHIFT]+countRegisters[MIN_REGS_SHIFT])
+    if(startRegister >= readRegisters[SerialPortHandler::MIN_REGS_SHIFT] && startRegister < readRegisters[SerialPortHandler::MIN_REGS_SHIFT]+countRegisters[SerialPortHandler::MIN_REGS_SHIFT])
         minLimitsIsLoaded = true;
-    else if (startRegister >= readRegisters[MAX_REGS_SHIFT] && startRegister < readRegisters[MAX_REGS_SHIFT]+countRegisters[MAX_REGS_SHIFT])
+    else if (startRegister >= readRegisters[SerialPortHandler::MAX_REGS_SHIFT] && startRegister < readRegisters[SerialPortHandler::MAX_REGS_SHIFT]+countRegisters[SerialPortHandler::MAX_REGS_SHIFT])
         maxLimitsIsLoaded = true;
 
     for(quint8 i = 0; i < serialPort->getCount(); i++) {
@@ -172,10 +160,6 @@ void MainWindow::readReady(bool queueIsEmpty) {
 }
 
 void MainWindow::setDevParam(quint16 reg, quint16 value) {
-//    if(!portIsOpen) return;
-
-//    portIsOpen = true;
-
     bench->setLink(true);
 
     switch (reg) {
@@ -248,15 +232,15 @@ void MainWindow::requestNextParam() {
     if(!portIsOpen) return;
 
     if(maxLimitsIsLoaded == false) {
-        currentCommandId = MAX_REGS_SHIFT;
+        currentCommandId = SerialPortHandler::MAX_REGS_SHIFT;
     }
 
     if(minLimitsIsLoaded == false) {
-        currentCommandId = MIN_REGS_SHIFT;
+        currentCommandId = SerialPortHandler::MIN_REGS_SHIFT;
     }
 
     if (minLimitsIsLoaded && maxLimitsIsLoaded) {
-        currentCommandId = VALUES_REGS_SHIFT;
+        currentCommandId = SerialPortHandler::VALUES_REGS_SHIFT;
     }
 
     if(serialPort->queueIsEmpty()) {
@@ -266,9 +250,6 @@ void MainWindow::requestNextParam() {
 }
 
 void MainWindow::errorMessage(QString msg) {
-#ifdef DEBUG_MODE
-    qDebug() << "Error: " << msg;
-#endif
     link = false;
     ui->statusBar->showMessage(msg, STATUSBAR_MESSAGE_TIMEOUT);
     qInfo() << "Error message: " << msg;
@@ -280,6 +261,16 @@ void MainWindow::on_connectButton_clicked()
 
     QString port = settings->getPortName();
     if(port.isEmpty()) return;
+
+    if(serialPort == nullptr) {
+        serialPort = new SerialPortHandler(this);
+        connect(serialPort, SIGNAL(stateChanged(bool)), this, SLOT(onStateChanged(bool)));
+        connect(serialPort, &SerialPortHandler::errorOccuredSignal, [this]() {
+            errorMessage(serialPort->errorString());
+        });
+        connect(serialPort, SIGNAL(timeoutSignal(quint8)), this, SLOT(onTimeout(quint8)));
+        connect(serialPort, SIGNAL(newDataIsReady(bool)), this, SLOT(readReady(bool)));
+    }
 
     if(serialPort->isOpen()) {
         serialPort->setOpenState(false);

@@ -36,11 +36,6 @@ DeviceForm::DeviceForm(QWidget *parent) :
     connect(ui->powerButton, SIGNAL(clicked(bool)), this, SLOT(powerButtonClicked(bool)));
 
     // связь крутилок и спин-боксов между собой
-//    connect(ui->frequencyDial, SIGNAL(sliderMoved(int)), this, SLOT(frequencyDialSlot(int)));
-//    connect(ui->durationDial, SIGNAL(sliderMoved(int)), this, SLOT(durationDialSlot(int)));
-//    connect(ui->currentDial, SIGNAL(sliderMoved(int)), this, SLOT(currentDialSlot(int)));
-//    connect(ui->voltageDial, SIGNAL(sliderMoved(int)), this, SLOT(voltageDialSlot(int)));
-//    connect(ui->delayDial, SIGNAL(sliderMoved(int)), this, SLOT(delayDialSlot(int)));
 
     connect(ui->frequencyDial, SIGNAL(valueChanged(int)), this, SLOT(frequencyDialSlot(int)));
     connect(ui->durationDial, SIGNAL(valueChanged(int)), this, SLOT(durationDialSlot(int)));

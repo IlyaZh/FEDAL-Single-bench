@@ -88,7 +88,6 @@ void SerialPortHandler::readyRead() {
             }
 
             emit newDataIsReady(queueIsEmpty());
-//            qDebug() << buffer.toHex();
         } else {
             errorMsg = "Контрольная сумма не сошлась! Буффер: " + QString(buffer);
             emit errorOccuredSignal();
