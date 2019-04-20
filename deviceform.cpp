@@ -1,5 +1,6 @@
 #include "deviceform.h"
 #include "ui_deviceform.h"
+#include <math.h>
 
 DeviceForm::DeviceForm(QWidget *parent) :
     QWidget(parent),
@@ -7,11 +8,11 @@ DeviceForm::DeviceForm(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    ui->frequencySpinBox->setSingleStep(1/round(pow(10, FREQUENCY_FRACTIAL_SYMBOLS)));
-    ui->durationSpinBox->setSingleStep(1/round(pow(10, DURATION_FRACTIAL_SYMBOLS)));
-    ui->currentSpinBox->setSingleStep(1/round(pow(10, CURRENT_FRACTIAL_SYMBOLS)));
-    ui->voltageSpinBox->setSingleStep(1/round(pow(10, VOLTAGE_FRACTIAL_SYMBOLS)));
-    ui->delaySpinBox->setSingleStep(1/round(pow(10, DELAY_FRACTIAL_SYMBOLS)));
+    ui->frequencySpinBox->setSingleStep(1/round(std::pow(10, FREQUENCY_FRACTIAL_SYMBOLS)));
+    ui->durationSpinBox->setSingleStep(1/round(std::pow(10, DURATION_FRACTIAL_SYMBOLS)));
+    ui->currentSpinBox->setSingleStep(1/round(std::pow(10, CURRENT_FRACTIAL_SYMBOLS)));
+    ui->voltageSpinBox->setSingleStep(1/round(std::pow(10, VOLTAGE_FRACTIAL_SYMBOLS)));
+    ui->delaySpinBox->setSingleStep(1/round(std::pow(10, DELAY_FRACTIAL_SYMBOLS)));
 
     ui->frequencySpinBox->setDecimals(FREQUENCY_FRACTIAL_SYMBOLS);
     ui->durationSpinBox->setDecimals(DURATION_FRACTIAL_SYMBOLS);
@@ -116,7 +117,7 @@ void DeviceForm::setDelay(double value) {
 }
 
 void DeviceForm::setFrequencyUi(double value) {
-    frequency = qRound(value*pow(10,FREQUENCY_FRACTIAL_SYMBOLS));
+    frequency = qRound(value*std::pow(10,FREQUENCY_FRACTIAL_SYMBOLS));
     ui->frequencyDial->setValue(frequency);
     ui->frequencySpinBox->setValue(value);
 }
@@ -128,19 +129,19 @@ void DeviceForm::setDurationUi(int value) {
 }
 
 void DeviceForm::setDurationUi(double value) {
-    duration = qRound(value*pow(10,DURATION_FRACTIAL_SYMBOLS));
+    duration = qRound(value*std::pow(10,DURATION_FRACTIAL_SYMBOLS));
     ui->durationDial->setValue(duration);
     ui->durationSpinBox->setValue(value);
 }
 
 void DeviceForm::setCurrentUi(double value) {
-    current = qRound(value*pow(10,CURRENT_FRACTIAL_SYMBOLS));
-    ui->currentDial->setValue(qRound(value*pow(10, CURRENT_FRACTIAL_SYMBOLS)));
+    current = qRound(value*std::pow(10,CURRENT_FRACTIAL_SYMBOLS));
+    ui->currentDial->setValue(qRound(value*std::pow(10, CURRENT_FRACTIAL_SYMBOLS)));
     ui->currentSpinBox->setValue(value);
 }
 
 void DeviceForm::setVoltageUi(double value) {
-    voltage = qRound(value*pow(10,VOLTAGE_FRACTIAL_SYMBOLS));
+    voltage = qRound(value*std::pow(10,VOLTAGE_FRACTIAL_SYMBOLS));
     ui->voltageDial->setValue(voltage);
     ui->voltageSpinBox->setValue(value);
 }
@@ -152,13 +153,13 @@ void DeviceForm::setDelayUi(int value) {
 }
 
 void DeviceForm::setDelayUi(double value) {
-    delay = qRound(value*pow(10, DELAY_FRACTIAL_SYMBOLS));
+    delay = qRound(value*std::pow(10, DELAY_FRACTIAL_SYMBOLS));
     ui->delayDial->setValue(delay);
     ui->delaySpinBox->setValue(value);
 }
 
 void DeviceForm::setMinFrequency(double value) {
-    ui->frequencyDial->setMinimum(qRound(value*pow(10, FREQUENCY_FRACTIAL_SYMBOLS)));
+    ui->frequencyDial->setMinimum(qRound(value*std::pow(10, FREQUENCY_FRACTIAL_SYMBOLS)));
     ui->frequencySpinBox->setMinimum(value);
 }
 
@@ -168,12 +169,12 @@ void DeviceForm::setMinDuration(int value) {
 }
 
 void DeviceForm::setMinCurrent(double value) {
-    ui->currentDial->setMinimum(qRound(value*pow(10, CURRENT_FRACTIAL_SYMBOLS)));
+    ui->currentDial->setMinimum(qRound(value*std::pow(10, CURRENT_FRACTIAL_SYMBOLS)));
     ui->currentSpinBox->setMinimum(value);
 }
 
 void DeviceForm::setMinVoltage(double value) {
-    ui->voltageDial->setMinimum(qRound(value*pow(10, VOLTAGE_FRACTIAL_SYMBOLS)));
+    ui->voltageDial->setMinimum(qRound(value*std::pow(10, VOLTAGE_FRACTIAL_SYMBOLS)));
     ui->voltageSpinBox->setMinimum(value);
 }
 
@@ -183,7 +184,7 @@ void DeviceForm::setMinDelay(int value) {
 }
 
 void DeviceForm::setMaxFrequency(double value) {
-    ui->frequencyDial->setMaximum(qRound(value*pow(10, FREQUENCY_FRACTIAL_SYMBOLS)));
+    ui->frequencyDial->setMaximum(qRound(value*std::pow(10, FREQUENCY_FRACTIAL_SYMBOLS)));
     ui->frequencySpinBox->setMaximum(value);
 }
 
@@ -193,12 +194,12 @@ void DeviceForm::setMaxDuration(int value) {
 }
 
 void DeviceForm::setMaxCurrent(double value) {
-    ui->currentDial->setMaximum(qRound(value*pow(10, CURRENT_FRACTIAL_SYMBOLS)));
+    ui->currentDial->setMaximum(qRound(value*std::pow(10, CURRENT_FRACTIAL_SYMBOLS)));
     ui->currentSpinBox->setMaximum(value);
 }
 
 void DeviceForm::setMaxVoltage(double value) {
-    ui->voltageDial->setMaximum(qRound(value*pow(10, VOLTAGE_FRACTIAL_SYMBOLS)));
+    ui->voltageDial->setMaximum(qRound(value*std::pow(10, VOLTAGE_FRACTIAL_SYMBOLS)));
     ui->voltageSpinBox->setMaximum(value);
 }
 
@@ -336,7 +337,7 @@ void DeviceForm::powerButtonClicked(bool flag) {
 }
 
 void DeviceForm::frequencyDialSlot(int value) {
-    setFrequencyUi(value / pow(10, FREQUENCY_FRACTIAL_SYMBOLS));
+    setFrequencyUi(value / std::pow(10, FREQUENCY_FRACTIAL_SYMBOLS));
 }
 
 void DeviceForm::durationDialSlot(int value) {
@@ -344,11 +345,11 @@ void DeviceForm::durationDialSlot(int value) {
 }
 
 void DeviceForm::currentDialSlot(int value) {
-    setCurrentUi(value / pow(10, CURRENT_FRACTIAL_SYMBOLS));
+    setCurrentUi(value / std::pow(10, CURRENT_FRACTIAL_SYMBOLS));
 }
 
 void DeviceForm::voltageDialSlot(int value) {
-    setVoltageUi(value / pow(10, VOLTAGE_FRACTIAL_SYMBOLS));
+    setVoltageUi(value / std::pow(10, VOLTAGE_FRACTIAL_SYMBOLS));
 }
 
 void DeviceForm::delayDialSlot(int value) {
