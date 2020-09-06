@@ -36,11 +36,11 @@ void SettingsDialog::saveSettings() {
     settings->setPortName(ui->portBox->currentText());
     settings->setPortAutoconnect(ui->autoConnectCheckBox->isChecked());
 
-    qInfo() << "Settings was saved: " << QString::number(settings->getAddress()) << settings->getPortName() << QString::number(settings->getBaudRate()) + "bps" << "Autoconnect: " + QString(settings->getPortAutoconnect());
+    qInfo() << tr("Settings was saved: ") << QString::number(settings->getAddress()) << settings->getPortName() << QString::number(settings->getBaudRate()) + "bps" << "Autoconnect: " + QString(settings->getPortAutoconnect());
 }
 
 void SettingsDialog::addressChanged(int value) {
-    QString str = QString("Адрес (hex):") + QString("%1").arg(value, 0, 16).toUpper() + QString("h");
+    QString str = QString(tr("Адрес (hex):")) + QString("%1").arg(value, 0, 16).toUpper() + QString("h");
     ui->hexAddressLabel->setText(str);
 }
 

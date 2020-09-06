@@ -5,6 +5,12 @@
 #include <QLibraryInfo>
 #include <QTextStream>
 
+char CURRENT_UNIT[] = "A";
+char DURATION_UNIT[] = "мкс";
+char FREQUENCY_UNIT[] = "Гц";
+char VOLTAGE_UNIT[] = "В";
+char DELAY_UNIT[] = "мкс";
+
 void messageToFile(QtMsgType type, const QMessageLogContext &context, const QString& msg);
 
 int main(int argc, char *argv[])
@@ -15,7 +21,7 @@ int main(int argc, char *argv[])
 
     //set translator for default widget's text (for example: QMessageBox's buttons)
     QTranslator qtTranslator;
-    qtTranslator.load("qt_ru",QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+    qtTranslator.load(TRANSLATION_FILE);
     a.installTranslator(&qtTranslator);
 
     MainWindow w;

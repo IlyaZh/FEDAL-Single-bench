@@ -70,7 +70,7 @@ void MainWindow::setupConnections() {
 }
 
 void MainWindow::loadComData() {
-    ui->comAddressLabel->setText("Адрес устройства: " + QString::number(settings->getAddress()));
+    ui->comAddressLabel->setText(tr("Адрес устройства: ") + QString::number(settings->getAddress()));
     QString comStateStr = QString("%1    %2 bps").arg(settings->getPortName()).arg(settings->getBaudRate());
     ui->comStateLabel->setText(comStateStr);
 }
@@ -123,12 +123,12 @@ void MainWindow::onStateChanged(bool flag) {
         portIsOpen = true;
         minLimitsIsLoaded = maxLimitsIsLoaded = false;
         buttonStateChanged(true);
-        qInfo() << "Port is open: " << settings->getPortName() + QString("   ") + QString::number(settings->getBaudRate()) + " bps";
+        qInfo() << tr("Port is open: ") << settings->getPortName() + QString("   ") + QString::number(settings->getBaudRate()) + " bps";
         requestNextParam();
     } else {
         portIsOpen = false;
         buttonStateChanged(false);
-        qInfo() << "Port is closed";
+        qInfo() << tr("Port is closed");
     }
 
     bench->setWidgetEnable(portIsOpen);
@@ -139,7 +139,7 @@ void MainWindow::buttonStateChanged(bool flag) {
     if(flag) {
         ui->connectButton->setText(settings->getPortName() + QString("   ") + QString::number(settings->getBaudRate()) + " bps");
     } else {
-        ui->connectButton->setText("Подключить COM-порт");
+        ui->connectButton->setText(tr("Подключить COM-порт"));
     }
 }
 

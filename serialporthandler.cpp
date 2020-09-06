@@ -82,14 +82,14 @@ void SerialPortHandler::readyRead() {
                     values.append((static_cast<quint8>(buffer.at(WRITE_HIGH_DATA_SHIFT+2*i))<<8) | static_cast<quint8>(buffer.at(WRITE_LOW_DATA_SHIFT+2*i)));
                 break;
             default:
-                errorMsg = "Неверный функциональный код. Буффер: " + QString(buffer);
+                errorMsg = tr("Неверный функциональный код. Буффер: ") + QString(buffer);
                 emit errorOccuredSignal();
                 return;
             }
 
             emit newDataIsReady(queueIsEmpty());
         } else {
-            errorMsg = "Контрольная сумма не сошлась! Буффер: " + QString(buffer);
+            errorMsg = tr("Контрольная сумма не сошлась! Буффер: ") + QString(buffer);
             emit errorOccuredSignal();
         }
         buffer.clear();
@@ -251,7 +251,7 @@ quint16 SerialPortHandler::crc16(const QByteArray &ptr, int size) {
 void SerialPortHandler::timeOut() {
     isTimeout = true;
     clearQueue();
-    errorMsg = "Таймаут. Буффер: " + QString(sentData);
+    errorMsg = tr("Таймаут. Буффер: ")+ QString(sentData);
     emit timeoutSignal(addr);
 }
 

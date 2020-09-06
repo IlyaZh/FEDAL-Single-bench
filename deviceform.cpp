@@ -20,11 +20,11 @@ DeviceForm::DeviceForm(QWidget *parent) :
     ui->voltageSpinBox->setDecimals(VOLTAGE_FRACTIAL_SYMBOLS);
     ui->delaySpinBox->setDecimals(DELAY_FRACTIAL_SYMBOLS);
 
-    ui->frequencySpinBox->setSuffix(QString(" ") + FREQUENCY_UNIT);
-    ui->durationSpinBox->setSuffix(QString(" ") + DURATION_UNIT);
-    ui->currentSpinBox->setSuffix(QString(" ") + CURRENT_UNIT);
-    ui->voltageSpinBox->setSuffix(QString(" ") + VOLTAGE_UNIT);
-    ui->delaySpinBox->setSuffix(QString(" ") + DELAY_UNIT);
+    ui->frequencySpinBox->setSuffix(QString(" ") + tr("Гц"));
+    ui->durationSpinBox->setSuffix(QString(" ") + tr("мкс"));
+    ui->currentSpinBox->setSuffix(QString(" ") + tr("А"));
+    ui->voltageSpinBox->setSuffix(QString(" ") + tr("В"));
+    ui->delaySpinBox->setSuffix(QString(" ") + tr("мкс"));
 
     isSlave = true;
 
@@ -75,43 +75,43 @@ DeviceForm::~DeviceForm()
 
 // public slots
 void DeviceForm::setFrequency(double value) {
-    ui->frequencyValueLabel->setText(locale.toString(value, DOUBLE_FORMAT, FREQUENCY_FRACTIAL_SYMBOLS) + QString(" ") + FREQUENCY_UNIT);
+    ui->frequencyValueLabel->setText(locale.toString(value, DOUBLE_FORMAT, FREQUENCY_FRACTIAL_SYMBOLS) + QString(" ") + tr("Гц"));
     if(ui->frequencyDial->hasFocus() || ui->frequencySpinBox->hasFocus()) return;
     setFrequencyUi(value);
 }
 
 void DeviceForm::setDuration(int value) {
-    ui->durationValueLabel->setText(locale.toString(value) + QString(" ") + DURATION_UNIT);
+    ui->durationValueLabel->setText(locale.toString(value) + QString(" ") + tr("мкс"));
     if(ui->durationDial->hasFocus() || ui->durationSpinBox->hasFocus()) return;
     setDurationUi(value);
 }
 
 void DeviceForm::setDuration(double value) {
-    ui->durationValueLabel->setText(locale.toString(value, DOUBLE_FORMAT, DURATION_FRACTIAL_SYMBOLS) + QString(" ") + DURATION_UNIT);
+    ui->durationValueLabel->setText(locale.toString(value, DOUBLE_FORMAT, DURATION_FRACTIAL_SYMBOLS) + QString(" ") + tr("мкс"));
     if(ui->durationDial->hasFocus() || ui->durationSpinBox->hasFocus()) return;
     setDurationUi(value);
 }
 
 void DeviceForm::setCurrent(double value) {
-    ui->currentValueLabel->setText(locale.toString(value, DOUBLE_FORMAT, CURRENT_FRACTIAL_SYMBOLS) + QString(" ") + CURRENT_UNIT);
+    ui->currentValueLabel->setText(locale.toString(value, DOUBLE_FORMAT, CURRENT_FRACTIAL_SYMBOLS) + QString(" ") + tr("А"));
     if(ui->currentDial->hasFocus() || ui->currentSpinBox->hasFocus()) return;
     setCurrentUi(value);
 }
 
 void DeviceForm::setVoltage(double value) {
-    ui->voltageValueLabel->setText(locale.toString(value, DOUBLE_FORMAT, VOLTAGE_FRACTIAL_SYMBOLS) + QString(" ") + VOLTAGE_UNIT);
+    ui->voltageValueLabel->setText(locale.toString(value, DOUBLE_FORMAT, VOLTAGE_FRACTIAL_SYMBOLS) + QString(" ") + tr("В"));
     if (ui->voltageDial->hasFocus() || ui->voltageSpinBox->hasFocus()) return;
     setVoltageUi(value);
 }
 
 void DeviceForm::setDelay(int value) {
-    ui->delayValueLabel->setText(locale.toString(value) + QString(" ") + DELAY_UNIT);
+    ui->delayValueLabel->setText(locale.toString(value) + QString(" ") + tr("мкс"));
     if(ui->delayDial->hasFocus() || ui->delaySpinBox->hasFocus()) return;
     setDelayUi(value);
 }
 
 void DeviceForm::setDelay(double value) {
-    ui->delayValueLabel->setText(locale.toString(value, DOUBLE_FORMAT, DELAY_FRACTIAL_SYMBOLS) + QString(" ") + DELAY_UNIT);
+    ui->delayValueLabel->setText(locale.toString(value, DOUBLE_FORMAT, DELAY_FRACTIAL_SYMBOLS) + QString(" ") + tr("мкс"));
     if(ui->delayDial->hasFocus() || ui->delaySpinBox->hasFocus()) return;
     setDelayUi(value);
 }
@@ -245,9 +245,9 @@ void DeviceForm::setDeviceBlocks(int value) {
 void DeviceForm::setStartStop(bool flag) {
     ui->startStopButton->setChecked(flag);
     if(flag) {
-        ui->startStopButton->setText("Генерация");
+        ui->startStopButton->setText(tr("Генерация"));
     } else {
-        ui->startStopButton->setText("БЕЗ генерации");
+        ui->startStopButton->setText(tr("БЕЗ генерации"));
     }
 }
 
@@ -255,18 +255,18 @@ void DeviceForm::setIntExtSync(bool flag) {
     isSlave = flag;
     ui->syncButton->setChecked(isSlave);
     if(isSlave) {
-        ui->syncButton->setText("Внешняя синхронизация");
+        ui->syncButton->setText(tr("Внешняя синхронизация"));
     } else {
-        ui->syncButton->setText("Внутренняя синхронизация");
+        ui->syncButton->setText(tr("Внутренняя синхронизация"));
     }
 }
 
 void DeviceForm::setPower(bool flag) {
     ui->powerButton->setChecked(flag);
     if(flag) {
-        ui->powerButton->setText("Включен");
+        ui->powerButton->setText(tr("Включен"));
     } else {
-        ui->powerButton->setText("Выключен");
+        ui->powerButton->setText(tr("Выключен"));
     }
 }
 
