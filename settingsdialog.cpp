@@ -55,6 +55,7 @@ void SettingsDialog::updateParameters() {
 
     ui->portBox->setCurrentText(settings->getPortName());
 
+    ui->baudBox->clear();
     foreach (quint32 item, BAUDRATES) {
         ui->baudBox->addItem(QString::number(item), QVariant(item));
     }
