@@ -1,2 +1,2 @@
 # FEDAL-Single-bench
-Программа для управления одним источником по протоколу ModBUS
+Software to control FEDAL laser drives by Modbus protocol
