@@ -10,7 +10,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = FedalSingle
 TEMPLATE = app
-VERSION = 1.1.0
+VERSION = 1.2.0
 
 CONFIG += c++17
 QMAKE_CXXFLAGS += -Wunused-value

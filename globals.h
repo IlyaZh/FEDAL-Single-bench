@@ -15,7 +15,7 @@ const QString ORG_NAME("FEDAL");
 const QString APP_NAME("SingleWorkBench");
 const QString APP_TITLE("FEDAL инструменты управления");
 const quint32 MAJOR_VERSION = 1;
-const quint32 MINOR_VERSION = 0;
+const quint32 MINOR_VERSION = 2;
 const quint32 PATCH_VERSION = 0;
 const QString VERSION =
     QString::number(MAJOR_VERSION) + "." + QString::number(MINOR_VERSION);
