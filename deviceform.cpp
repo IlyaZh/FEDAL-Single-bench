@@ -289,9 +289,9 @@ void DeviceForm::setDeviceBlocks(int value) {
 void DeviceForm::setStartStop(bool flag) {
   ui->startStopButton->setChecked(flag);
   if (flag) {
-    ui->startStopButton->setText("Генерация");
+    ui->startStopButton->setText(tr("Генерация"));
   } else {
-    ui->startStopButton->setText("БЕЗ генерации");
+    ui->startStopButton->setText(tr("БЕЗ генерации"));
   }
 }
 
@@ -299,18 +299,18 @@ void DeviceForm::setIntExtSync(bool flag) {
   isSlave = flag;
   ui->syncButton->setChecked(isSlave);
   if (isSlave) {
-    ui->syncButton->setText("Внешняя синхронизация");
+    ui->syncButton->setText(tr("Внешняя синхронизация"));
   } else {
-    ui->syncButton->setText("Внутренняя синхронизация");
+    ui->syncButton->setText(tr("Внутренняя синхронизация"));
   }
 }
 
 void DeviceForm::setPower(bool flag) {
   ui->powerButton->setChecked(flag);
   if (flag) {
-    ui->powerButton->setText("Включен");
+    ui->powerButton->setText(tr("Включен"));
   } else {
-    ui->powerButton->setText("Выключен");
+    ui->powerButton->setText(tr("Выключен"));
   }
 }
 

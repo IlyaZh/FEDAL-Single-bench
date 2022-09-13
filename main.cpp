@@ -16,12 +16,12 @@ int main(int argc, char *argv[]) {
   qInstallMessageHandler(messageToFile);
 #endif
 
-  // set translator for default widget's text (for example: QMessageBox's
-  // buttons)
   QTranslator qtTranslator;
-  qtTranslator.load("qt_ru",
-                    QLibraryInfo::location(QLibraryInfo::TranslationsPath));
-  a.installTranslator(&qtTranslator);
+  bool translate_file_loaded = qtTranslator.load("qt_en",
+                    ":/");
+  qDebug() << "traslate_file_loaded" <<  translate_file_loaded;
+  bool translate_loaded = a.installTranslator(&qtTranslator);
+  qDebug() << "translate_loaded" << translate_loaded;
 
   MainWindow w;
   w.show();

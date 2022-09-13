@@ -80,7 +80,7 @@ void MainWindow::setupConnections() {
 }
 
 void MainWindow::loadComData() {
-  ui->comAddressLabel->setText("Адрес устройства: " +
+  ui->comAddressLabel->setText(tr("Адрес устройства: ") +
                                QString::number(settings->getAddress()));
   QString comStateStr = QString("%1    %2 bps")
                             .arg(settings->getPortName())
@@ -289,7 +289,7 @@ void MainWindow::on_connectButton_clicked() {
     serialPort->setTimeout(COM_TIMEOUT);
     serialPort->setOpenState(true, port_settings);
     if (!serialPort->isOpen()) {
-      errorMessage("Подключение неудалось");
+      errorMessage(tr("Подключение неудалось"));
       ui->connectButton->setChecked(false);
     }
   }

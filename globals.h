@@ -5,6 +5,7 @@
 #include <QLocale>
 #include <QString>
 #include <QVector>
+#include <QObject>
 
 #ifdef QT_DEBUG
 #define USING_SERIAL_MOCK
@@ -15,14 +16,14 @@ const QString LOG_FILE("protocol.log");
 
 const QString ORG_NAME("FEDAL");
 const QString APP_NAME("SingleWorkBench");
-const QString APP_TITLE("FEDAL инструменты управления");
+const QString APP_TITLE(QObject::tr("FEDAL workbench"));
 const quint32 MAJOR_VERSION = 1;
 const quint32 MINOR_VERSION = 2;
 const quint32 PATCH_VERSION = 0;
 const QString VERSION =
     QString::number(MAJOR_VERSION) + "." + QString::number(MINOR_VERSION);
 const QString WINDOW_TITLE =
-    APP_TITLE + " (Версия " + QString::number(MAJOR_VERSION) + "." +
+    APP_TITLE + " ("+ QObject::tr("Version")+ QString::number(MAJOR_VERSION) + "." +
     QString::number(MINOR_VERSION) + "." + QString::number(PATCH_VERSION) + ")";
 
 const QList<quint32> BAUDRATES = {9600,  14400, 19200, 28800,

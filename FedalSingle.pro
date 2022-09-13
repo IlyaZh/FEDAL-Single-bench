@@ -57,3 +57,6 @@ RESOURCES += \
     resources.qrc
 
 RC_ICONS = FEDAL.ico
+
+TRANSLATIONS = qt_en.ts
+

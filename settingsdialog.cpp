@@ -38,7 +38,7 @@ void SettingsDialog::saveSettings() {
 }
 
 void SettingsDialog::addressChanged(int value) {
-  QString str = QString("Адрес (hex):") +
+  QString str = QString(tr("Адрес (hex):")) +
                 QString("%1").arg(value, 0, 16).toUpper() + QString("h");
   ui->hexAddressLabel->setText(str);
 }

@@ -18,13 +18,6 @@ SerialPortHandler::SerialPortHandler(QObject* parent)
           &SerialPortHandler::slot_readyRead);
   connect(dataThread, &models::DataThread::signal_stateChanged, this,
           &SerialPortHandler::signal_stateChanged);
-  //  connect(dataThread, &models::DataThread::signal_readyToWrite, this,
-  //  &SerialPortHandler::sign
-
-  /*connect(errorTimer, SIGNAL(timeout()), this, SLOT(timeOut()));
-  connect(serialPort, SIGNAL(bytesWritten(qint64)), this,
-          SLOT(dataIsWritten(qint64)));
-  connect(serialPort, SIGNAL(readyRead()), this, SLOT(readyRead()));*/
 }
 
 SerialPortHandler::~SerialPortHandler() { dataThread->deleteLater(); }
