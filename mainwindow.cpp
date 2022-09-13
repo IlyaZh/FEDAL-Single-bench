@@ -124,7 +124,9 @@ void MainWindow::settingsChanged() {
     serialPort->setOpenState(true, port_settings);
   }
   loadComData();
-  qInfo() << "settings changed: baud rate" << settings->getBaudRate() << ", port name" << settings->getPortName() << ", address" << settings->getAddress();
+  qInfo() << "settings changed: baud rate" << settings->getBaudRate()
+          << ", port name" << settings->getPortName() << ", address"
+          << settings->getAddress();
 }
 
 void MainWindow::onStateChanged(bool flag) {

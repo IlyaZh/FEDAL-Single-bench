@@ -17,9 +17,8 @@ int main(int argc, char *argv[]) {
 #endif
 
   QTranslator qtTranslator;
-  bool translate_file_loaded = qtTranslator.load("qt_en",
-                    ":/");
-  qDebug() << "traslate_file_loaded" <<  translate_file_loaded;
+  bool translate_file_loaded = qtTranslator.load("qt_en", ":/");
+  qDebug() << "traslate_file_loaded" << translate_file_loaded;
   bool translate_loaded = a.installTranslator(&qtTranslator);
   qDebug() << "translate_loaded" << translate_loaded;
 
@@ -50,9 +49,10 @@ void messageToFile(QtMsgType type, const QMessageLogContext &context,
           << context.function << endl;
       break;
     case QtDebugMsg:
-//      out << QDateTime::currentDateTime().toString("dd.MM.yy hh:mm:ss:zzz")
-//          << " Debug: " << msg << ",     " << context.file << "     "
-//          << context.function << endl;
+      //      out << QDateTime::currentDateTime().toString("dd.MM.yy
+      //      hh:mm:ss:zzz")
+      //          << " Debug: " << msg << ",     " << context.file << "     "
+      //          << context.function << endl;
       break;
     case QtWarningMsg:
       out << QDateTime::currentDateTime().toString("dd.MM.yy hh:mm:ss:zzz")

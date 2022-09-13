@@ -3,9 +3,9 @@
 #include <QDebug>
 #include <QList>
 #include <QLocale>
+#include <QObject>
 #include <QString>
 #include <QVector>
-#include <QObject>
 
 #ifdef QT_DEBUG
 #define USING_SERIAL_MOCK
@@ -22,9 +22,10 @@ const quint32 MINOR_VERSION = 2;
 const quint32 PATCH_VERSION = 0;
 const QString VERSION =
     QString::number(MAJOR_VERSION) + "." + QString::number(MINOR_VERSION);
-const QString WINDOW_TITLE =
-    APP_TITLE + " ("+ QObject::tr("Version")+ QString::number(MAJOR_VERSION) + "." +
-    QString::number(MINOR_VERSION) + "." + QString::number(PATCH_VERSION) + ")";
+const QString WINDOW_TITLE = APP_TITLE + " (" + QObject::tr("Version") +
+                             QString::number(MAJOR_VERSION) + "." +
+                             QString::number(MINOR_VERSION) + "." +
+                             QString::number(PATCH_VERSION) + ")";
 
 const QList<quint32> BAUDRATES = {9600,  14400, 19200, 28800,
                                   38400, 57600, 115200};
