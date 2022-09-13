@@ -38,7 +38,6 @@ void DataThread::disable() {
 }
 
 void DataThread::enable(PortSettings& settings) {
-  qDebug() << "DataThread enable isRunning()" << isRunning();
   if (!isRunning()) {
     is_working.store(true);
     settings_ = settings;
@@ -65,12 +64,7 @@ void DataThread::run() {
   }
   emit signal_stateChanged(io->isOpen());
 
-  //  if (q->empty()) {
-  //    emit signal_readyToWrite();
-  //  }
-  //  connect(q.data(), &Queue::EmptyOccured, this,
-  //          &DataThread::signal_readyToWrite);
-  qDebug() << "Serial port has started";
+  qInfo() << "Serial port thread has started";
   QByteArray rx_buffer;
   while (is_working.load()) {
     const auto t = timeout.load();
@@ -98,7 +92,6 @@ void DataThread::run() {
     qDebug() << "Rx: " << received_package.toHex(' ');
     rx_buffer.append(received_package);
     if (received_package.size() >= rx_wait_size) {
-      qDebug() << "emit received data";
       emit signal_receivedData(rx_buffer);
       rx_buffer.clear();
     }
@@ -110,7 +103,7 @@ void DataThread::run() {
   }
 
   emit signal_stateChanged(false);
-  qDebug() << "Serial port thread has stopped";
+  qInfo() << "Serial port thread has stopped";
   if (io) {
     io->close();
   }

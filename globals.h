@@ -6,8 +6,10 @@
 #include <QString>
 #include <QVector>
 
-//#define USING_SERIAL_MOCK
-//#define STOP_LOG_TO_FILE
+#ifdef QT_DEBUG
+#define USING_SERIAL_MOCK
+#define STOP_LOG_TO_FILE
+#endif
 
 const QString LOG_FILE("protocol.log");
 

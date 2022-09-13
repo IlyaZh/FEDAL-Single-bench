@@ -124,7 +124,7 @@ void MainWindow::settingsChanged() {
     serialPort->setOpenState(true, port_settings);
   }
   loadComData();
-  qDebug() << "settings changed";
+  qInfo() << "settings changed: baud rate" << settings->getBaudRate() << ", port name" << settings->getPortName() << ", address" << settings->getAddress();
 }
 
 void MainWindow::onStateChanged(bool flag) {
@@ -262,12 +262,8 @@ void MainWindow::requestNextParam() {
     currentCommandId = SerialPortHandler::VALUES_REGS_SHIFT;
   }
 
-  //    if(serialPort->queueIsEmpty()) {
   serialPort->dataToRead(readRegisters[currentCommandId],
                          countRegisters[currentCommandId]);
-  qDebug() << "dataToRead" << readRegisters[currentCommandId]
-           << countRegisters[currentCommandId];
-  //    }
 }
 
 void MainWindow::errorMessage(QString msg) {

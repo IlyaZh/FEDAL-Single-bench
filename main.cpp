@@ -50,9 +50,9 @@ void messageToFile(QtMsgType type, const QMessageLogContext &context,
           << context.function << endl;
       break;
     case QtDebugMsg:
-      out << QDateTime::currentDateTime().toString("dd.MM.yy hh:mm:ss:zzz")
-          << " Debug: " << msg << ",     " << context.file << "     "
-          << context.function << endl;
+//      out << QDateTime::currentDateTime().toString("dd.MM.yy hh:mm:ss:zzz")
+//          << " Debug: " << msg << ",     " << context.file << "     "
+//          << context.function << endl;
       break;
     case QtWarningMsg:
       out << QDateTime::currentDateTime().toString("dd.MM.yy hh:mm:ss:zzz")

@@ -120,7 +120,7 @@ void SerialPortHandler::startTransmit(QByteArray&& str) {
   dataThread->getQueue()->push(str);
   QString msg(QTime::currentTime().toString("HH:mm:ss.zzz") +
               " -> push to queue: " + str.toHex(' '));
-  qInfo() << msg;
+  qDebug() << msg;
 }
 
 void SerialPortHandler::prepareWrite(reply_t&& qData) {

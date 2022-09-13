@@ -46,7 +46,6 @@ class SerialPort_Mock : public QSerialPort {
         answer.push_back(make_answer_06());
         break;
       default:
-        qDebug() << "Wrong modbus code " << code;
         return {};
     }
     const auto crc = crc16(answer, answer.size());
