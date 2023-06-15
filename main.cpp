@@ -30,7 +30,7 @@ int main(int argc, char *argv[]) {
 
 void messageToFile(QtMsgType type, const QMessageLogContext &context,
                    const QString &msg) {
-  QFile file(LOG_FILE);
+  QFile file(QApplication::applicationDirPath() + QDir::separator() + LOG_FILE);
 
   if (!file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Append)) {
     return;
@@ -46,7 +46,7 @@ void messageToFile(QtMsgType type, const QMessageLogContext &context,
     case QtInfoMsg:
       out << QDateTime::currentDateTime().toString("dd.MM.yy hh:mm:ss:zzz")
           << " Info: " << msg << ",     " << context.file << "     "
-          << context.function << endl;
+          << context.function << Qt::endl;
       break;
     case QtDebugMsg:
       //      out << QDateTime::currentDateTime().toString("dd.MM.yy
@@ -56,15 +56,15 @@ void messageToFile(QtMsgType type, const QMessageLogContext &context,
       break;
     case QtWarningMsg:
       out << QDateTime::currentDateTime().toString("dd.MM.yy hh:mm:ss:zzz")
-          << " Warning: " << msg << ",      " << context.file << endl;
+          << " Warning: " << msg << ",      " << context.file << Qt::endl;
       break;
     case QtCriticalMsg:
       out << QDateTime::currentDateTime().toString("dd.MM.yy hh:mm:ss:zzz")
-          << " Critical: " << msg << ",  " << context.file << endl;
+          << " Critical: " << msg << ",  " << context.file << Qt::endl;
       break;
     case QtFatalMsg:
       out << QDateTime::currentDateTime().toString("dd.MM.yy hh:mm:ss:zzz")
-          << " Fatal: " << msg << ",     " << context.file << endl;
+          << " Fatal: " << msg << ",     " << context.file << Qt::endl;
       break;
   }
   file.close();

@@ -7,10 +7,10 @@
 #include <QString>
 #include <QVector>
 
-#ifdef QT_DEBUG
-#define USING_SERIAL_MOCK
-#define STOP_LOG_TO_FILE
-#endif
+//#ifdef QT_DEBUG
+//#define USING_SERIAL_MOCK
+//#define STOP_LOG_TO_FILE
+//#endif
 
 const QString LOG_FILE("protocol.log");
 
