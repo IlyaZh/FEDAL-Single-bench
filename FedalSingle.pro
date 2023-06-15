@@ -10,7 +10,11 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = FedalSingle
 TEMPLATE = app
-VERSION = 1.1.0
+VERSION = 1.2.0
+
+CONFIG += c++17
+QMAKE_CXXFLAGS += -Wunused-value
+QMAKE_CXXFLAGS += -Werror
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which as been marked as deprecated (the exact warnings
@@ -28,6 +32,7 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     appsettings.cpp \
     deviceform.cpp \
+    models/data_thread.cpp \
     settingsdialog.cpp \
     aboutdialog.cpp \
     serialporthandler.cpp
@@ -36,6 +41,9 @@ HEADERS  += mainwindow.h \
     globals.h \
     appsettings.h \
     deviceform.h \
+    models/data_thread.h \
+    models/queue.hpp \
+    mocks/serial_mock.hpp \
     settingsdialog.h \
     aboutdialog.h \
     serialporthandler.h
@@ -49,3 +57,6 @@ RESOURCES += \
     resources.qrc
 
 RC_ICONS = FEDAL.ico
+
+TRANSLATIONS = qt_en.ts
+

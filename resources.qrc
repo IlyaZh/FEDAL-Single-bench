@@ -2,5 +2,7 @@
     <qresource prefix="/">
         <file>FEDAL.ico</file>
         <file alias="FEDAL.png">FEDAL.png</file>
+        <file>qt_en.qm</file>
+        <file>qt_en.ts</file>
     </qresource>
 </RCC>
